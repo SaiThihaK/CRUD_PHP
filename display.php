@@ -66,7 +66,7 @@ $response = mysqli_query($connectdb, $query);
         </tbody>";
             }
         } else {
-            die($mysqli_error($connectdb));
+            echo "Nodata";
         }
         ?>
     </table>

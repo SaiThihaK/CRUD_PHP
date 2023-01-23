@@ -2,6 +2,16 @@
 include "db.php";
 
 $id = $_GET['id'];
+$getQuery = "select * from user where id = $id ";
+$response = mysqli_query($connectdb, $getQuery);
+
+if ($response) {
+    $row = mysqli_fetch_assoc($response);
+    $username = $row['username'];
+    $email = $row['email'];
+    $password = $row['password'];
+    $phone = $row['phone'];
+}
 
 if (isset($_POST['submit'])) {
     echo $_POST['email'];
@@ -45,19 +55,19 @@ if (isset($_POST['submit'])) {
             <form class="p-10 w-75" method="POST">
                 <div class="mt-3 w-full d-flex flex-column form-group">
                     <label>User name</label>
-                    <input placeholder="name" name="username" class="p- form-control " />
+                    <input placeholder="name" name="username" class="p- form-control" value=<?php echo $username ?> />
                 </div>
                 <div class="mt-3 w-full d-flex flex-column form-group">
                     <label>Email</label>
-                    <input placeholder="email" name="email" class="p-2 form-control " />
+                    <input placeholder="email" name="email" class="p-2 form-control " value=<?php echo $email ?> />
                 </div>
                 <div class="mt-3 w-full d-flex flex-column form-group">
                     <label>Password</label>
-                    <input placeholder="password" name="password" class="p-2 form-control" />
+                    <input placeholder="password" name="password" class="p-2 form-control" value=<?php echo $password ?> />
                 </div>
                 <div class="mt-3 w-full d-flex flex-column form-group">
                     <label>phone</label>
-                    <input placeholder="phone" name="phone" class="p-2 form-control" />
+                    <input placeholder="phone" name="phone" class="p-2 form-control" value=<?php echo $phone ?> />
                 </div>
                 <div class="d-flex justify-content-start mt-3">
                     <button type="sumit" class="btn btn-primary" name="submit" value="Submit">submit</button>
